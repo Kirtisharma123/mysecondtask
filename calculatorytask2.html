@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f1f1f1;
+}
+
+.calculator {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.display {
+  width: calc(100% - 40px);
+  height: 50px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+
+button {
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #f1f1f1;
+}
+
+.operator {
+  background-color: #f0ad4e;
+  color: #fff;
+}
+
+.number {
+  background-color: #337ab7;
+  color: #fff;
+}
+
+.eval {
+  background-color: #5cb85c;
+  color: #fff;
+}
+
+  </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" class="display" disabled>
+    <div class="buttons">
+      <button class="operator">C</button>
+      <button class="operator">/</button>
+      <button class="number">7</button>
+      <button class="number">8</button>
+      <button class="number">9</button>
+      <button class="operator">*</button>
+      <button class="number">4</button>
+      <button class="number">5</button>
+      <button class="number">6</button>
+      <button class="operator">-</button>
+      <button class="number">1</button>
+      <button class="number">2</button>
+      <button class="number">3</button>
+      <button class="operator">+</button>
+      <button class="number">0</button>
+      <button class="operator">.</button>
+      <button class="eval">=</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+  const display = document.querySelector('.display');
+  const buttons = document.querySelectorAll('button');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      if (button.textContent === 'C') {
+        display.value = '';
+      } else if (button.textContent === '=') {
+        try {
+          display.value = eval(display.value);
+        } catch (error) {
+          display.value = 'Error';
+        }
+      } else {
+        display.value += button.textContent;
+      }
+    });
+  });
+});
+
+  </script>
+</body>
+</html>
